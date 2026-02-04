@@ -1,0 +1,7 @@
+# Streamlit UI Requirements
+streamlit>=1.31.0
+
+# Azure AI dependencies (already installed from main requirements)
+# azure-ai-projects>=2.0.0b3
+# azure-identity>=1.15.0
+# python-dotenv>=1.0.0

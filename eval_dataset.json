@@ -1,0 +1,791 @@
+{
+  "metadata": {
+    "created_at": "2026-02-04T11:55:59.216554",
+    "conversation_source": "slack_fake_messages",
+    "total_examples": 36,
+    "task_types": [
+      "relationship_extraction",
+      "multi_hop_reasoning",
+      "task_extraction",
+      "temporal_reasoning",
+      "sentiment_analysis",
+      "intent_classification",
+      "action_items",
+      "named_entity_recognition",
+      "technical_knowledge",
+      "question_answering",
+      "summarization"
+    ]
+  },
+  "conversation": {
+    "messages": [
+      {
+        "id": 1,
+        "username": "Alice",
+        "text": "Good morning team! Quick question about the new authentication service.",
+        "icon": ":woman:"
+      },
+      {
+        "id": 2,
+        "username": "Alice",
+        "text": "I'm seeing some timeout errors in production logs. Anyone else experiencing this?",
+        "icon": ":woman:"
+      },
+      {
+        "id": 3,
+        "username": "Alice",
+        "text": "The error rate is around 2.3% since yesterday's deployment.",
+        "icon": ":woman:"
+      },
+      {
+        "id": 4,
+        "username": "Bob",
+        "text": "Morning Alice! Yeah, I noticed that too.",
+        "icon": ":man:"
+      },
+      {
+        "id": 5,
+        "username": "Bob",
+        "text": "I think it's related to the database connection pool settings we changed.",
+        "icon": ":man:"
+      },
+      {
+        "id": 6,
+        "username": "Bob",
+        "text": "Let me check the configuration and get back to you in 10 mins.",
+        "icon": ":man:"
+      },
+      {
+        "id": 7,
+        "username": "Charlie",
+        "text": "I can confirm - we're seeing similar issues on the checkout service.",
+        "icon": ":technologist:"
+      },
+      {
+        "id": 8,
+        "username": "Charlie",
+        "text": "Should we roll back the deployment?",
+        "icon": ":technologist:"
+      },
+      {
+        "id": 9,
+        "username": "Charlie",
+        "text": "Our SLA is at risk if this continues.",
+        "icon": ":technologist:"
+      },
+      {
+        "id": 10,
+        "username": "Alice",
+        "text": "Good point Charlie. Let's give Bob 10 minutes to investigate first.",
+        "icon": ":woman:"
+      },
+      {
+        "id": 11,
+        "username": "Alice",
+        "text": "If we can't identify the root cause quickly, we should roll back.",
+        "icon": ":woman:"
+      },
+      {
+        "id": 12,
+        "username": "Alice",
+        "text": "I'm creating an incident ticket - INC-2847",
+        "icon": ":woman:"
+      },
+      {
+        "id": 13,
+        "username": "Bob",
+        "text": "Found it! The connection pool max size was set to 10, should be 50.",
+        "icon": ":man:"
+      },
+      {
+        "id": 14,
+        "username": "Bob",
+        "text": "It's in the application.yml file that got overwritten during the last merge.",
+        "icon": ":man:"
+      },
+      {
+        "id": 15,
+        "username": "Bob",
+        "text": "Deploying the fix now. ETA 3 minutes.",
+        "icon": ":man:"
+      },
+      {
+        "id": 16,
+        "username": "Diana",
+        "text": "Great catch Bob! 👏",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 17,
+        "username": "Diana",
+        "text": "Let's add this to our deployment checklist so it doesn't happen again.",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 18,
+        "username": "Diana",
+        "text": "I'll update the runbook with this troubleshooting step.",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 19,
+        "username": "Charlie",
+        "text": "Error rate is dropping - down to 0.8% now.",
+        "icon": ":technologist:"
+      },
+      {
+        "id": 20,
+        "username": "Charlie",
+        "text": "Looks like the fix is working!",
+        "icon": ":technologist:"
+      },
+      {
+        "id": 21,
+        "username": "Alice",
+        "text": "Excellent! Back to normal levels. Closing the incident.",
+        "icon": ":woman:"
+      },
+      {
+        "id": 22,
+        "username": "Alice",
+        "text": "Bob, can you do a quick post-mortem doc for this?",
+        "icon": ":woman:"
+      },
+      {
+        "id": 23,
+        "username": "Alice",
+        "text": "Also, we should probably add automated testing for configuration changes.",
+        "icon": ":woman:"
+      },
+      {
+        "id": 24,
+        "username": "Bob",
+        "text": "Absolutely, I'll have the post-mortem done by EOD.",
+        "icon": ":man:"
+      },
+      {
+        "id": 25,
+        "username": "Bob",
+        "text": "And yes, good idea on the automated testing. I'll add it to our backlog.",
+        "icon": ":man:"
+      },
+      {
+        "id": 26,
+        "username": "Diana",
+        "text": "Perfect team work everyone! 🎉",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 27,
+        "username": "Diana",
+        "text": "On another note, reminder that our sprint review is tomorrow at 2 PM.",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 28,
+        "username": "Diana",
+        "text": "Please have your demos ready.",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 29,
+        "username": "Charlie",
+        "text": "Thanks for the reminder Diana!",
+        "icon": ":technologist:"
+      },
+      {
+        "id": 30,
+        "username": "Charlie",
+        "text": "I'll be demoing the new analytics dashboard.",
+        "icon": ":technologist:"
+      },
+      {
+        "id": 31,
+        "username": "Charlie",
+        "text": "Quick question - should I include the mobile responsive version or just desktop?",
+        "icon": ":technologist:"
+      },
+      {
+        "id": 32,
+        "username": "Diana",
+        "text": "Both would be great if you have time!",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 33,
+        "username": "Diana",
+        "text": "The stakeholders are particularly interested in the mobile experience.",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 34,
+        "username": "Alice",
+        "text": "I'll be presenting the performance improvements we made.",
+        "icon": ":woman:"
+      },
+      {
+        "id": 35,
+        "username": "Alice",
+        "text": "We reduced API response time by 40% on average.",
+        "icon": ":woman:"
+      },
+      {
+        "id": 36,
+        "username": "Alice",
+        "text": "Pretty excited about this one! 📊",
+        "icon": ":woman:"
+      },
+      {
+        "id": 37,
+        "username": "Bob",
+        "text": "That's amazing Alice! Can't wait to see the metrics.",
+        "icon": ":man:"
+      },
+      {
+        "id": 38,
+        "username": "Bob",
+        "text": "I'll demo the new user authentication flow with OAuth2 support.",
+        "icon": ":man:"
+      },
+      {
+        "id": 39,
+        "username": "Bob",
+        "text": "Still need to test the edge cases though. Anyone available to help test today?",
+        "icon": ":man:"
+      },
+      {
+        "id": 40,
+        "username": "Charlie",
+        "text": "I can help test after lunch, around 1:30 PM?",
+        "icon": ":technologist:"
+      },
+      {
+        "id": 41,
+        "username": "Charlie",
+        "text": "Just send me the test environment URL and test cases.",
+        "icon": ":technologist:"
+      },
+      {
+        "id": 42,
+        "username": "Bob",
+        "text": "Perfect! I'll send you an email with all the details.",
+        "icon": ":man:"
+      },
+      {
+        "id": 43,
+        "username": "Bob",
+        "text": "The test env is: https://test-auth.company.com",
+        "icon": ":man:"
+      },
+      {
+        "id": 44,
+        "username": "Bob",
+        "text": "Login with your regular credentials.",
+        "icon": ":man:"
+      },
+      {
+        "id": 45,
+        "username": "Diana",
+        "text": "Great collaboration team!",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 46,
+        "username": "Diana",
+        "text": "BTW, we got approval for the new feature roadmap for Q2.",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 47,
+        "username": "Diana",
+        "text": "We'll be focusing on AI-powered recommendations and real-time notifications.",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 48,
+        "username": "Alice",
+        "text": "Awesome news! 🚀",
+        "icon": ":woman:"
+      },
+      {
+        "id": 49,
+        "username": "Alice",
+        "text": "Do we have any initial requirements or user stories?",
+        "icon": ":woman:"
+      },
+      {
+        "id": 50,
+        "username": "Alice",
+        "text": "I'd love to start thinking about the technical architecture.",
+        "icon": ":woman:"
+      },
+      {
+        "id": 51,
+        "username": "Diana",
+        "text": "Yes! I'll share the PRD (Product Requirements Document) by end of week.",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 52,
+        "username": "Diana",
+        "text": "We'll do a kickoff meeting next Monday to discuss architecture.",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 53,
+        "username": "Diana",
+        "text": "Product team has already done some user research - really interesting insights!",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 54,
+        "username": "Charlie",
+        "text": "Looking forward to it!",
+        "icon": ":technologist:"
+      },
+      {
+        "id": 55,
+        "username": "Charlie",
+        "text": "For the AI recommendations, are we building in-house or using a third-party service?",
+        "icon": ":technologist:"
+      },
+      {
+        "id": 56,
+        "username": "Diana",
+        "text": "Still evaluating options. That's one thing we'll discuss in the kickoff.",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 57,
+        "username": "Diana",
+        "text": "We're considering AWS Personalize, Google Recommendations AI, and a custom solution.",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 58,
+        "username": "Diana",
+        "text": "Each has pros and cons we need to weigh.",
+        "icon": ":woman_technologist:"
+      },
+      {
+        "id": 59,
+        "username": "Bob",
+        "text": "Makes sense. Cost vs customization trade-off.",
+        "icon": ":man:"
+      },
+      {
+        "id": 60,
+        "username": "Bob",
+        "text": "I have some experience with AWS Personalize from my previous company.",
+        "icon": ":man:"
+      },
+      {
+        "id": 61,
+        "username": "Bob",
+        "text": "Happy to share insights during the meeting.",
+        "icon": ":man:"
+      },
+      {
+        "id": 62,
+        "username": "Alice",
+        "text": "That would be super helpful Bob!",
+        "icon": ":woman:"
+      },
+      {
+        "id": 63,
+        "username": "Alice",
+        "text": "I'll start researching the other options before the meeting.",
+        "icon": ":woman:"
+      },
+      {
+        "id": 64,
+        "username": "Alice",
+        "text": "Let's make sure we have a solid comparison matrix ready.",
+        "icon": ":woman:"
+      }
+    ],
+    "full_text": "Alice: Good morning team! Quick question about the new authentication service.\nAlice: I'm seeing some timeout errors in production logs. Anyone else experiencing this?\nAlice: The error rate is around 2.3% since yesterday's deployment.\nBob: Morning Alice! Yeah, I noticed that too.\nBob: I think it's related to the database connection pool settings we changed.\nBob: Let me check the configuration and get back to you in 10 mins.\nCharlie: I can confirm - we're seeing similar issues on the checkout service.\nCharlie: Should we roll back the deployment?\nCharlie: Our SLA is at risk if this continues.\nAlice: Good point Charlie. Let's give Bob 10 minutes to investigate first.\nAlice: If we can't identify the root cause quickly, we should roll back.\nAlice: I'm creating an incident ticket - INC-2847\nBob: Found it! The connection pool max size was set to 10, should be 50.\nBob: It's in the application.yml file that got overwritten during the last merge.\nBob: Deploying the fix now. ETA 3 minutes.\nDiana: Great catch Bob! 👏\nDiana: Let's add this to our deployment checklist so it doesn't happen again.\nDiana: I'll update the runbook with this troubleshooting step.\nCharlie: Error rate is dropping - down to 0.8% now.\nCharlie: Looks like the fix is working!\nAlice: Excellent! Back to normal levels. Closing the incident.\nAlice: Bob, can you do a quick post-mortem doc for this?\nAlice: Also, we should probably add automated testing for configuration changes.\nBob: Absolutely, I'll have the post-mortem done by EOD.\nBob: And yes, good idea on the automated testing. I'll add it to our backlog.\nDiana: Perfect team work everyone! 🎉\nDiana: On another note, reminder that our sprint review is tomorrow at 2 PM.\nDiana: Please have your demos ready.\nCharlie: Thanks for the reminder Diana!\nCharlie: I'll be demoing the new analytics dashboard.\nCharlie: Quick question - should I include the mobile responsive version or just desktop?\nDiana: Both would be great if you have time!\nDiana: The stakeholders are particularly interested in the mobile experience.\nAlice: I'll be presenting the performance improvements we made.\nAlice: We reduced API response time by 40% on average.\nAlice: Pretty excited about this one! 📊\nBob: That's amazing Alice! Can't wait to see the metrics.\nBob: I'll demo the new user authentication flow with OAuth2 support.\nBob: Still need to test the edge cases though. Anyone available to help test today?\nCharlie: I can help test after lunch, around 1:30 PM?\nCharlie: Just send me the test environment URL and test cases.\nBob: Perfect! I'll send you an email with all the details.\nBob: The test env is: https://test-auth.company.com\nBob: Login with your regular credentials.\nDiana: Great collaboration team!\nDiana: BTW, we got approval for the new feature roadmap for Q2.\nDiana: We'll be focusing on AI-powered recommendations and real-time notifications.\nAlice: Awesome news! 🚀\nAlice: Do we have any initial requirements or user stories?\nAlice: I'd love to start thinking about the technical architecture.\nDiana: Yes! I'll share the PRD (Product Requirements Document) by end of week.\nDiana: We'll do a kickoff meeting next Monday to discuss architecture.\nDiana: Product team has already done some user research - really interesting insights!\nCharlie: Looking forward to it!\nCharlie: For the AI recommendations, are we building in-house or using a third-party service?\nDiana: Still evaluating options. That's one thing we'll discuss in the kickoff.\nDiana: We're considering AWS Personalize, Google Recommendations AI, and a custom solution.\nDiana: Each has pros and cons we need to weigh.\nBob: Makes sense. Cost vs customization trade-off.\nBob: I have some experience with AWS Personalize from my previous company.\nBob: Happy to share insights during the meeting.\nAlice: That would be super helpful Bob!\nAlice: I'll start researching the other options before the meeting.\nAlice: Let's make sure we have a solid comparison matrix ready."
+  },
+  "evaluation_data": [
+    {
+      "task_type": "question_answering",
+      "sub_type": "extractive",
+      "question": "What was the error rate that Alice reported seeing in production?",
+      "answer": "2.3%",
+      "context": "The error rate is around 2.3% since yesterday's deployment.",
+      "difficulty": "easy"
+    },
+    {
+      "task_type": "question_answering",
+      "sub_type": "extractive",
+      "question": "What was the incident ticket number created by Alice?",
+      "answer": "INC-2847",
+      "context": "I'm creating an incident ticket - INC-2847",
+      "difficulty": "easy"
+    },
+    {
+      "task_type": "question_answering",
+      "sub_type": "extractive",
+      "question": "What was the connection pool max size that caused the issue?",
+      "answer": "10 (should have been 50)",
+      "context": "Found it! The connection pool max size was set to 10, should be 50.",
+      "difficulty": "medium"
+    },
+    {
+      "task_type": "question_answering",
+      "sub_type": "extractive",
+      "question": "What is the URL of the test authentication environment?",
+      "answer": "https://test-auth.company.com",
+      "context": "The test env is: https://test-auth.company.com",
+      "difficulty": "easy"
+    },
+    {
+      "task_type": "question_answering",
+      "sub_type": "abstractive",
+      "question": "What was the root cause of the timeout errors in production?",
+      "answer": "The database connection pool max size was incorrectly set to 10 instead of 50 in the application.yml file, which was overwritten during the last merge.",
+      "difficulty": "medium"
+    },
+    {
+      "task_type": "question_answering",
+      "sub_type": "abstractive",
+      "question": "How did the team resolve the production incident?",
+      "answer": "Bob identified that the connection pool size was misconfigured and deployed a fix to change it from 10 to 50, which resolved the timeout errors within 3 minutes.",
+      "difficulty": "medium"
+    },
+    {
+      "task_type": "question_answering",
+      "sub_type": "abstractive",
+      "question": "What improvements did the team suggest to prevent similar incidents?",
+      "answer": "The team suggested adding the configuration check to the deployment checklist, updating the runbook with troubleshooting steps, and implementing automated testing for configuration changes.",
+      "difficulty": "hard"
+    },
+    {
+      "task_type": "sentiment_analysis",
+      "text": "Great catch Bob! 👏",
+      "sentiment": "positive",
+      "confidence": "high",
+      "speaker": "Diana"
+    },
+    {
+      "task_type": "sentiment_analysis",
+      "text": "I'm seeing some timeout errors in production logs. Anyone else experiencing this?",
+      "sentiment": "concerned",
+      "confidence": "high",
+      "speaker": "Alice"
+    },
+    {
+      "task_type": "sentiment_analysis",
+      "text": "Should we roll back the deployment? Our SLA is at risk if this continues.",
+      "sentiment": "urgent/worried",
+      "confidence": "high",
+      "speaker": "Charlie"
+    },
+    {
+      "task_type": "sentiment_analysis",
+      "text": "Perfect team work everyone! 🎉",
+      "sentiment": "positive",
+      "confidence": "high",
+      "speaker": "Diana"
+    },
+    {
+      "task_type": "sentiment_analysis",
+      "text": "Pretty excited about this one! 📊",
+      "sentiment": "positive/excited",
+      "confidence": "high",
+      "speaker": "Alice"
+    },
+    {
+      "task_type": "named_entity_recognition",
+      "text": "I'm creating an incident ticket - INC-2847",
+      "entities": [
+        {
+          "text": "INC-2847",
+          "type": "TICKET_ID",
+          "start": 32,
+          "end": 40
+        }
+      ]
+    },
+    {
+      "task_type": "named_entity_recognition",
+      "text": "The test env is: https://test-auth.company.com",
+      "entities": [
+        {
+          "text": "https://test-auth.company.com",
+          "type": "URL",
+          "start": 17,
+          "end": 47
+        }
+      ]
+    },
+    {
+      "task_type": "named_entity_recognition",
+      "text": "We'll do a kickoff meeting next Monday to discuss architecture.",
+      "entities": [
+        {
+          "text": "next Monday",
+          "type": "DATE",
+          "start": 31,
+          "end": 42
+        }
+      ]
+    },
+    {
+      "task_type": "named_entity_recognition",
+      "text": "We're considering AWS Personalize, Google Recommendations AI, and a custom solution.",
+      "entities": [
+        {
+          "text": "AWS Personalize",
+          "type": "TECHNOLOGY",
+          "start": 18,
+          "end": 33
+        },
+        {
+          "text": "Google Recommendations AI",
+          "type": "TECHNOLOGY",
+          "start": 35,
+          "end": 60
+        }
+      ]
+    },
+    {
+      "task_type": "summarization",
+      "sub_type": "extractive",
+      "input": "Alice: Good morning team! Quick question about the new authentication service.\nAlice: I'm seeing some timeout errors in production logs. Anyone else experiencing this?\nAlice: The error rate is around 2.3% since yesterday's deployment.\nBob: Morning Alice! Yeah, I noticed that too.\nBob: I think it's related to the database connection pool settings we changed.\nBob: Let me check the configuration and get back to you in 10 mins.\nCharlie: I can confirm - we're seeing similar issues on the checkout service.\nCharlie: Should we roll back the deployment?\nCharlie: Our SLA is at risk if this continues.\nAlice: Good point Charlie. Let's give Bob 10 minutes to investigate first.\nAlice: If we can't identify the root cause quickly, we should roll back.\nAlice: I'm creating an incident ticket - INC-2847\nBob: Found it! The connection pool max size was set to 10, should be 50.\nBob: It's in the application.yml file that got overwritten during the last merge.\nBob: Deploying the fix now. ETA 3 minutes.\nDiana: Great catch Bob! 👏\nDiana: Let's add this to our deployment checklist so it doesn't happen again.\nDiana: I'll update the runbook with this troubleshooting step.\nCharlie: Error rate is dropping - down to 0.8% now.\nCharlie: Looks like the fix is working!\nAlice: Excellent! Back to normal levels. Closing the incident.\nAlice: Bob, can you do a quick post-mortem doc for this?\nAlice: Also, we should probably add automated testing for configuration changes.\nBob: Absolutely, I'll have the post-mortem done by EOD.\nBob: And yes, good idea on the automated testing. I'll add it to our backlog.\nDiana: Perfect team work everyone! 🎉\nDiana: On another note, reminder that our sprint review is tomorrow at 2 PM.\nDiana: Please have your demos ready.\nCharlie: Thanks for the reminder Diana!\nCharlie: I'll be demoing the new analytics dashboard.\nCharlie: Quick question - should I include the mobile responsive version or just desktop?\nDiana: Both would be great if you have time!\nDiana: The stakeholders are particularly interested in the mobile experience.\nAlice: I'll be presenting the performance improvements we made.\nAlice: We reduced API response time by 40% on average.\nAlice: Pretty excited about this one! 📊\nBob: That's amazing Alice! Can't wait to see the metrics.\nBob: I'll demo the new user authentication flow with OAuth2 support.\nBob: Still need to test the edge cases though. Anyone available to help test today?\nCharlie: I can help test after lunch, around 1:30 PM?\nCharlie: Just send me the test environment URL and test cases.\nBob: Perfect! I'll send you an email with all the details.\nBob: The test env is: https://test-auth.company.com\nBob: Login with your regular credentials.\nDiana: Great collaboration team!\nDiana: BTW, we got approval for the new feature roadmap for Q2.\nDiana: We'll be focusing on AI-powered recommendations and real-time notifications.\nAlice: Awesome news! 🚀\nAlice: Do we have any initial requirements or user stories?\nAlice: I'd love to start thinking about the technical architecture.\nDiana: Yes! I'll share the PRD (Product Requirements Document) by end of week.\nDiana: We'll do a kickoff meeting next Monday to discuss architecture.\nDiana: Product team has already done some user research - really interesting insights!\nCharlie: Looking forward to it!\nCharlie: For the AI recommendations, are we building in-house or using a third-party service?\nDiana: Still evaluating options. That's one thing we'll discuss in the kickoff.\nDiana: We're considering AWS Personalize, Google Recommendations AI, and a custom solution.\nDiana: Each has pros and cons we need to weigh.\nBob: Makes sense. Cost vs customization trade-off.\nBob: I have some experience with AWS Personalize from my previous company.\nBob: Happy to share insights during the meeting.\nAlice: That would be super helpful Bob!\nAlice: I'll start researching the other options before the meeting.\nAlice: Let's make sure we have a solid comparison matrix ready.",
+      "summary": "The team identified and resolved a production incident caused by incorrect database connection pool settings. They discussed sprint demos, new Q2 features including AI-powered recommendations, and technology evaluation options.",
+      "key_points": [
+        "Production timeout errors with 2.3% error rate",
+        "Root cause: connection pool size set to 10 instead of 50",
+        "Issue resolved in 3 minutes by deploying configuration fix",
+        "Team will add automated testing for configuration changes",
+        "Sprint review scheduled for tomorrow at 2 PM",
+        "Q2 roadmap approved: AI recommendations and real-time notifications",
+        "Evaluating AWS Personalize, Google Recommendations AI, and custom solutions"
+      ]
+    },
+    {
+      "task_type": "intent_classification",
+      "text": "Quick question about the new authentication service.",
+      "intent": "inquiry",
+      "sub_intent": "technical_question"
+    },
+    {
+      "task_type": "intent_classification",
+      "text": "Should we roll back the deployment?",
+      "intent": "suggestion",
+      "sub_intent": "risk_mitigation"
+    },
+    {
+      "task_type": "intent_classification",
+      "text": "I'll send a calendar invite in a few minutes.",
+      "intent": "action_commitment",
+      "sub_intent": "meeting_scheduling"
+    },
+    {
+      "task_type": "intent_classification",
+      "text": "Anyone available to help test today?",
+      "intent": "request",
+      "sub_intent": "assistance_needed"
+    },
+    {
+      "task_type": "intent_classification",
+      "text": "I'll share the PRD (Product Requirements Document) by end of week.",
+      "intent": "commitment",
+      "sub_intent": "document_sharing"
+    },
+    {
+      "task_type": "task_extraction",
+      "conversation_segment": "Alice: Good morning team! Quick question about the new authentication service.\nAlice: I'm seeing some timeout errors in production logs. Anyone else experiencing this?\nAlice: The error rate is around 2.3% since yesterday's deployment.\nBob: Morning Alice! Yeah, I noticed that too.\nBob: I think it's related to the database connection pool settings we changed.\nBob: Let me check the configuration and get back to you in 10 mins.\nCharlie: I can confirm - we're seeing similar issues on the checkout service.\nCharlie: Should we roll back the deployment?\nCharlie: Our SLA is at risk if this continues.\nAlice: Good point Charlie. Let's give Bob 10 minutes to investigate first.\nAlice: If we can't identify the root cause quickly, we should roll back.\nAlice: I'm creating an incident ticket - INC-2847\nBob: Found it! The connection pool max size was set to 10, should be 50.\nBob: It's in the application.yml file that got overwritten during the last merge.\nBob: Deploying the fix now. ETA 3 minutes.\nDiana: Great catch Bob! 👏\nDiana: Let's add this to our deployment checklist so it doesn't happen again.\nDiana: I'll update the runbook with this troubleshooting step.\nCharlie: Error rate is dropping - down to 0.8% now.\nCharlie: Looks like the fix is working!\nAlice: Excellent! Back to normal levels. Closing the incident.\nAlice: Bob, can you do a quick post-mortem doc for this?\nAlice: Also, we should probably add automated testing for configuration changes.\nBob: Absolutely, I'll have the post-mortem done by EOD.\nBob: And yes, good idea on the automated testing. I'll add it to our backlog.\nDiana: Perfect team work everyone! 🎉\nDiana: On another note, reminder that our sprint review is tomorrow at 2 PM.\nDiana: Please have your demos ready.\nCharlie: Thanks for the reminder Diana!\nCharlie: I'll be demoing the new analytics dashboard.\nCharlie: Quick question - should I include the mobile responsive version or just desktop?\nDiana: Both would be great if you have time!\nDiana: The stakeholders are particularly interested in the mobile experience.\nAlice: I'll be presenting the performance improvements we made.\nAlice: We reduced API response time by 40% on average.\nAlice: Pretty excited about this one! 📊\nBob: That's amazing Alice! Can't wait to see the metrics.\nBob: I'll demo the new user authentication flow with OAuth2 support.\nBob: Still need to test the edge cases though. Anyone available to help test today?\nCharlie: I can help test after lunch, around 1:30 PM?\nCharlie: Just send me the test environment URL and test cases.\nBob: Perfect! I'll send you an email with all the details.\nBob: The test env is: https://test-auth.company.com\nBob: Login with your regular credentials.\nDiana: Great collaboration team!\nDiana: BTW, we got approval for the new feature roadmap for Q2.\nDiana: We'll be focusing on AI-powered recommendations and real-time notifications.\nAlice: Awesome news! 🚀\nAlice: Do we have any initial requirements or user stories?\nAlice: I'd love to start thinking about the technical architecture.\nDiana: Yes! I'll share the PRD (Product Requirements Document) by end of week.\nDiana: We'll do a kickoff meeting next Monday to discuss architecture.\nDiana: Product team has already done some user research - really interesting insights!\nCharlie: Looking forward to it!\nCharlie: For the AI recommendations, are we building in-house or using a third-party service?\nDiana: Still evaluating options. That's one thing we'll discuss in the kickoff.\nDiana: We're considering AWS Personalize, Google Recommendations AI, and a custom solution.\nDiana: Each has pros and cons we need to weigh.\nBob: Makes sense. Cost vs customization trade-off.\nBob: I have some experience with AWS Personalize from my previous company.\nBob: Happy to share insights during the meeting.\nAlice: That would be super helpful Bob!\nAlice: I'll start researching the other options before the meeting.\nAlice: Let's make sure we have a solid comparison matrix ready.",
+      "extracted_tasks": [
+        {
+          "task": "Complete post-mortem document for the production incident",
+          "assignee": "Bob",
+          "due": "EOD",
+          "status": "committed"
+        },
+        {
+          "task": "Add configuration check to deployment checklist",
+          "assignee": "Diana",
+          "due": "not specified",
+          "status": "planned"
+        },
+        {
+          "task": "Add automated testing for configuration changes to backlog",
+          "assignee": "Bob",
+          "due": "not specified",
+          "status": "planned"
+        },
+        {
+          "task": "Prepare demo for sprint review (analytics dashboard)",
+          "assignee": "Charlie",
+          "due": "tomorrow at 2 PM",
+          "status": "in_progress"
+        },
+        {
+          "task": "Help test authentication flow",
+          "assignee": "Charlie",
+          "due": "today at 1:30 PM",
+          "status": "committed"
+        },
+        {
+          "task": "Send test environment details via email",
+          "assignee": "Bob",
+          "due": "today",
+          "status": "committed"
+        },
+        {
+          "task": "Share PRD by end of week",
+          "assignee": "Diana",
+          "due": "end of week",
+          "status": "committed"
+        },
+        {
+          "task": "Research AI recommendation options",
+          "assignee": "Alice",
+          "due": "before kickoff meeting",
+          "status": "planned"
+        },
+        {
+          "task": "Prepare comparison matrix for recommendation services",
+          "assignee": "Alice",
+          "due": "before kickoff meeting",
+          "status": "planned"
+        }
+      ]
+    },
+    {
+      "task_type": "temporal_reasoning",
+      "question": "How long did it take to deploy the fix for the connection pool issue?",
+      "answer": "3 minutes",
+      "reasoning": "Bob said 'ETA 3 minutes' when deploying the fix"
+    },
+    {
+      "task_type": "temporal_reasoning",
+      "question": "When is the sprint review scheduled?",
+      "answer": "Tomorrow at 2 PM",
+      "reasoning": "Diana mentioned 'our sprint review is tomorrow at 2 PM'"
+    },
+    {
+      "task_type": "temporal_reasoning",
+      "question": "When will Diana share the Product Requirements Document?",
+      "answer": "By end of week",
+      "reasoning": "Diana said 'I'll share the PRD by end of week'"
+    },
+    {
+      "task_type": "temporal_reasoning",
+      "question": "What time did Charlie offer to help test?",
+      "answer": "After lunch, around 1:30 PM",
+      "reasoning": "Charlie said 'I can help test after lunch, around 1:30 PM?'"
+    },
+    {
+      "task_type": "technical_knowledge",
+      "question": "What configuration parameter caused the production issue?",
+      "answer": "Database connection pool max size",
+      "context": "The connection pool max size was set to 10, should be 50"
+    },
+    {
+      "task_type": "technical_knowledge",
+      "question": "What authentication protocol is being implemented?",
+      "answer": "OAuth2",
+      "context": "I'll demo the new user authentication flow with OAuth2 support"
+    },
+    {
+      "task_type": "technical_knowledge",
+      "question": "What file contained the incorrect configuration?",
+      "answer": "application.yml",
+      "context": "It's in the application.yml file that got overwritten during the last merge"
+    },
+    {
+      "task_type": "technical_knowledge",
+      "question": "What services are being evaluated for AI recommendations?",
+      "answer": "AWS Personalize, Google Recommendations AI, and a custom solution",
+      "context": "We're considering AWS Personalize, Google Recommendations AI, and a custom solution"
+    },
+    {
+      "task_type": "multi_hop_reasoning",
+      "question": "What was the improvement in API response time and who will be presenting it?",
+      "answer": "40% improvement, presented by Alice",
+      "reasoning": "Alice said 'We reduced API response time by 40% on average' and 'I'll be presenting the performance improvements we made'",
+      "difficulty": "medium"
+    },
+    {
+      "task_type": "multi_hop_reasoning",
+      "question": "Who has previous experience with AWS Personalize and how will they contribute?",
+      "answer": "Bob has experience with AWS Personalize from his previous company and will share insights during the meeting",
+      "reasoning": "Bob mentioned 'I have some experience with AWS Personalize from my previous company' and 'Happy to share insights during the meeting'",
+      "difficulty": "medium"
+    },
+    {
+      "task_type": "relationship_extraction",
+      "relationships": [
+        {
+          "entity1": "Alice",
+          "relation": "reported",
+          "entity2": "timeout errors",
+          "confidence": "high"
+        },
+        {
+          "entity1": "Bob",
+          "relation": "fixed",
+          "entity2": "connection pool issue",
+          "confidence": "high"
+        },
+        {
+          "entity1": "Charlie",
+          "relation": "will_demo",
+          "entity2": "analytics dashboard",
+          "confidence": "high"
+        },
+        {
+          "entity1": "Diana",
+          "relation": "manages",
+          "entity2": "sprint review",
+          "confidence": "high"
+        },
+        {
+          "entity1": "Bob",
+          "relation": "has_experience_with",
+          "entity2": "AWS Personalize",
+          "confidence": "high"
+        }
+      ]
+    },
+    {
+      "task_type": "action_items",
+      "priority": "high",
+      "items": [
+        {
+          "action": "Complete post-mortem document",
+          "owner": "Bob",
+          "deadline": "EOD",
+          "type": "documentation"
+        },
+        {
+          "action": "Test authentication flow",
+          "owner": "Charlie",
+          "deadline": "1:30 PM today",
+          "type": "testing"
+        }
+      ]
+    },
+    {
+      "task_type": "action_items",
+      "priority": "medium",
+      "items": [
+        {
+          "action": "Update deployment checklist",
+          "owner": "Diana",
+          "deadline": "not specified",
+          "type": "process_improvement"
+        },
+        {
+          "action": "Research AI recommendation options",
+          "owner": "Alice",
+          "deadline": "before kickoff",
+          "type": "research"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+task_type,sub_type,input,output,context,difficulty
+question_answering,extractive,What was the error rate that Alice reported seeing in production?,2.3%,The error rate is around 2.3% since yesterday's deployment.,easy
+question_answering,extractive,What was the incident ticket number created by Alice?,INC-2847,I'm creating an incident ticket - INC-2847,easy
+question_answering,extractive,What was the connection pool max size that caused the issue?,10 (should have been 50),"Found it! The connection pool max size was set to 10, should be 50.",medium
+question_answering,extractive,What is the URL of the test authentication environment?,https://test-auth.company.com,The test env is: https://test-auth.company.com,easy
+question_answering,abstractive,What was the root cause of the timeout errors in production?,"The database connection pool max size was incorrectly set to 10 instead of 50 in the application.yml file, which was overwritten during the last merge.",,medium
+question_answering,abstractive,How did the team resolve the production incident?,"Bob identified that the connection pool size was misconfigured and deployed a fix to change it from 10 to 50, which resolved the timeout errors within 3 minutes.",,medium
+question_answering,abstractive,What improvements did the team suggest to prevent similar incidents?,"The team suggested adding the configuration check to the deployment checklist, updating the runbook with troubleshooting steps, and implementing automated testing for configuration changes.",,hard
+sentiment_analysis,,Great catch Bob! 👏,positive,Diana,
+sentiment_analysis,,I'm seeing some timeout errors in production logs. Anyone else experiencing this?,concerned,Alice,
+sentiment_analysis,,Should we roll back the deployment? Our SLA is at risk if this continues.,urgent/worried,Charlie,
+sentiment_analysis,,Perfect team work everyone! 🎉,positive,Diana,
+sentiment_analysis,,Pretty excited about this one! 📊,positive/excited,Alice,
+intent_classification,technical_question,Quick question about the new authentication service.,inquiry,,
+intent_classification,risk_mitigation,Should we roll back the deployment?,suggestion,,
+intent_classification,meeting_scheduling,I'll send a calendar invite in a few minutes.,action_commitment,,
+intent_classification,assistance_needed,Anyone available to help test today?,request,,
+intent_classification,document_sharing,I'll share the PRD (Product Requirements Document) by end of week.,commitment,,
+temporal_reasoning,,How long did it take to deploy the fix for the connection pool issue?,3 minutes,Bob said 'ETA 3 minutes' when deploying the fix,
+temporal_reasoning,,When is the sprint review scheduled?,Tomorrow at 2 PM,Diana mentioned 'our sprint review is tomorrow at 2 PM',
+temporal_reasoning,,When will Diana share the Product Requirements Document?,By end of week,Diana said 'I'll share the PRD by end of week',
+temporal_reasoning,,What time did Charlie offer to help test?,"After lunch, around 1:30 PM","Charlie said 'I can help test after lunch, around 1:30 PM?'",
+technical_knowledge,,What configuration parameter caused the production issue?,Database connection pool max size,"The connection pool max size was set to 10, should be 50",
+technical_knowledge,,What authentication protocol is being implemented?,OAuth2,I'll demo the new user authentication flow with OAuth2 support,
+technical_knowledge,,What file contained the incorrect configuration?,application.yml,It's in the application.yml file that got overwritten during the last merge,
+technical_knowledge,,What services are being evaluated for AI recommendations?,"AWS Personalize, Google Recommendations AI, and a custom solution","We're considering AWS Personalize, Google Recommendations AI, and a custom solution",
