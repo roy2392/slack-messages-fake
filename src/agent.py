@@ -23,7 +23,7 @@ class SlackAgent:
 
     def initialize(self):
         """Initialize Azure AI Foundry agent"""
-        # Initialize clients
+        # Initialize clients with Azure credentials
         self.project_client = AIProjectClient(
             endpoint=self.config.azure.endpoint,
             credential=DefaultAzureCredential(),
@@ -64,9 +64,8 @@ Available actions:
             description="Slack workspace AI assistant with MCP integration"
         )
 
-        # Create conversation for trace organization
-        conversation = self.project_client.agents.create_conversation()
-        self.conversation_id = conversation.id
+        # Set conversation ID for trace organization (optional)
+        self.conversation_id = f"session-{self.agent.name}-{self.agent.version}"
 
         return self.agent
 

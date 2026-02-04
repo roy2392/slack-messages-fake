@@ -15,11 +15,11 @@ services:
       - "13080:13080"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:13080/mcp"]
+      test: ["CMD", "sh", "-c", "pidof slack-mcp-server"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 40s
+      start_period: 10s
     networks:
       - slack-ai-network
 
@@ -32,9 +32,11 @@ services:
       - FOUNDRY_PROJECT_ENDPOINT=${FOUNDRY_PROJECT_ENDPOINT}
       - FOUNDRY_API_KEY=${FOUNDRY_API_KEY}
       - FOUNDRY_MODEL_DEPLOYMENT_NAME=${FOUNDRY_MODEL_DEPLOYMENT_NAME}
-      - SLACK_MCP_SERVER_URL=http://mcp-server:13080/mcp
+      - SLACK_MCP_SERVER_URL=${SLACK_MCP_SERVER_URL:-http://localhost:13080/mcp}
       - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
       - SLACK_WORKSPACE=${SLACK_WORKSPACE}
+    volumes:
+      - ~/.azure:/root/.azure
     ports:
       - "8501:8501"
     depends_on:

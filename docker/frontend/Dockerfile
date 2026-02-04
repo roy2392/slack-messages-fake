@@ -9,7 +9,9 @@ RUN apt-get update && apt-get install -y \
 
 # Copy requirements and install Python dependencies
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt && \
+    pip install --no-cache-dir azure-cli && \
+    pip install --no-cache-dir --force-reinstall azure-ai-projects==2.0.0b3
 
 # Copy application files
 COPY src/ ./src/
