@@ -132,10 +132,16 @@ Add these scopes in your Slack App configuration:
 
 ```
 ├── src/
-│   ├── __init__.py            # Package initialization
-│   ├── app.py                 # Main Streamlit application
+│   ├── __init__.py            # Package initialization (v1.1.0)
+│   ├── app.py                 # Main entry point (34 lines)
 │   ├── config.py              # Configuration management
-│   └── agent.py               # Azure AI agent wrapper
+│   ├── agent.py               # Azure AI agent wrapper
+│   ├── session.py             # Session state management
+│   └── ui/                    # UI components package
+│       ├── __init__.py        # UI package exports
+│       ├── sidebar.py         # Sidebar component
+│       ├── chat.py            # Chat interface
+│       └── response.py        # Response formatting
 ├── docker/
 │   ├── frontend/
 │   │   └── Dockerfile         # Frontend container
@@ -158,9 +164,18 @@ Add these scopes in your Slack App configuration:
 
 ### Key Files
 
-- **src/app.py** - Main Streamlit application with enhanced trace formatting
+**Core Application:**
+- **src/app.py** (34 lines) - Clean entry point orchestrating all components
 - **src/config.py** - Configuration management using dataclasses
 - **src/agent.py** - SlackAgent class encapsulating Azure AI Foundry logic
+- **src/session.py** - Session state initialization and management
+
+**UI Components:**
+- **src/ui/sidebar.py** - Sidebar with status, controls, and sample queries
+- **src/ui/chat.py** - Chat interface and message handling
+- **src/ui/response.py** - Agent response formatting and display
+
+**Infrastructure:**
 - **docker-compose.yml** - Multi-container orchestration
 - **requirements.txt** - All Python dependencies
 
