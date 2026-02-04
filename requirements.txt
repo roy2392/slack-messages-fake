@@ -1,2 +1,15 @@
+# Azure AI Foundry
+azure-ai-projects>=2.0.0b3
+azure-identity>=1.15.0
+
+# Slack SDK
 slack-sdk>=3.23.0
+
+# Streamlit
+streamlit>=1.31.0
+
+# Environment
 python-dotenv>=1.0.0
+
+# Utilities
+requests>=2.31.0

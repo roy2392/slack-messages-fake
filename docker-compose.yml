@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  mcp-server:
+    build:
+      context: .
+      dockerfile: docker/mcp-server/Dockerfile
+    container_name: slack-mcp-server
+    environment:
+      - SLACK_MCP_PORT=13080
+      - SLACK_MCP_HOST=0.0.0.0
+      - SLACK_MCP_XOXB_TOKEN=${SLACK_BOT_TOKEN}
+      - SLACK_MCP_WORKSPACE=${SLACK_WORKSPACE}
+    ports:
+      - "13080:13080"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:13080/mcp"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - slack-ai-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend/Dockerfile
+    container_name: slack-ai-frontend
+    environment:
+      - FOUNDRY_PROJECT_ENDPOINT=${FOUNDRY_PROJECT_ENDPOINT}
+      - FOUNDRY_API_KEY=${FOUNDRY_API_KEY}
+      - FOUNDRY_MODEL_DEPLOYMENT_NAME=${FOUNDRY_MODEL_DEPLOYMENT_NAME}
+      - SLACK_MCP_SERVER_URL=http://mcp-server:13080/mcp
+      - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN}
+      - SLACK_WORKSPACE=${SLACK_WORKSPACE}
+    ports:
+      - "8501:8501"
+    depends_on:
+      mcp-server:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - slack-ai-network
+
+networks:
+  slack-ai-network:
+    driver: bridge

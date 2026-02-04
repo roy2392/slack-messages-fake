@@ -1,167 +1,235 @@
-# Slack Fake Messages Generator
+# Slack AI Assistant
 
-A Python script to send fake conversation messages to a Slack channel for testing, demo, or development purposes.
+Azure AI Foundry + Slack MCP integration with Streamlit UI. Query your Slack workspace using natural language through an AI agent.
 
 ## Features
 
-- 🤖 Sends messages with custom usernames and emojis
-- ⏱️ Configurable delays between messages for realistic conversation flow
-- 🎭 Easily customizable conversation templates
-- ✅ Connection testing before sending messages
-- 🔒 Secure credential management with environment variables
+- 🤖 **Azure AI Foundry Integration** - GPT-4o powered agent
+- 🔧 **MCP Protocol** - Model Context Protocol for Slack
+- 💬 **Streamlit UI** - Clean, modern chat interface
+- 🐳 **Docker Support** - Containerized deployment
+- 📊 **Enhanced Tracing** - Proper Azure AI Foundry trace formatting
+- ⚡ **Auto-Approval** - Seamless tool execution
 
-## Prerequisites
+## Quick Start
 
-- Python 3.7 or higher
-- A Slack workspace where you have permission to create apps
-- A Slack App with a Bot Token
-
-## Setup
-
-### 1. Create a Slack App
-
-1. Go to [https://api.slack.com/apps](https://api.slack.com/apps)
-2. Click **"Create New App"** → **"From scratch"**
-3. Give your app a name (e.g., "Fake Messages Bot")
-4. Select your workspace
-
-### 2. Configure Bot Permissions
-
-1. In your app settings, go to **"OAuth & Permissions"**
-2. Scroll down to **"Scopes"** → **"Bot Token Scopes"**
-3. Add the following scopes:
-   - `chat:write` - Send messages
-   - `chat:write.customize` - Send messages with custom username and avatar
-
-### 3. Install App to Workspace
-
-1. Scroll to the top of the **"OAuth & Permissions"** page
-2. Click **"Install to Workspace"**
-3. Authorize the app
-4. Copy the **"Bot User OAuth Token"** (starts with `xoxb-`)
-
-### 4. Invite Bot to Channel
-
-1. Open the Slack channel where you want to send messages
-2. Type `/invite @YourBotName` (replace with your bot's name)
-3. Or right-click the channel → Integrations → Add apps
-
-### 5. Install Dependencies
+### Using Docker (Recommended)
 
 ```bash
-# Create a virtual environment (recommended)
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+# 1. Clone the repository
+git clone https://github.com/roy2392/slack-messages-fake.git
+cd slack-messages-fake
 
-# Install required packages
-pip install -r requirements.txt
-```
-
-### 6. Configure Environment Variables
-
-```bash
-# Copy the example environment file
+# 2. Configure environment
 cp .env.example .env
+# Edit .env with your credentials
 
-# Edit .env and add your credentials
+# 3. Start with Docker Compose
+docker-compose up -d
+
+# 4. Open in browser
+open http://localhost:8501
 ```
 
-Edit `.env` file:
-```env
-SLACK_BOT_TOKEN=xoxb-your-actual-bot-token-here
-SLACK_CHANNEL=#your-channel-name
+### Manual Setup
+
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Start MCP server
+bash start_mcp_server.sh &
+
+# 3. Run Streamlit app
+streamlit run app.py
 ```
 
-You can also use the channel ID instead of the name (e.g., `C01234567`).
+## Configuration
+
+Create a `.env` file with your credentials:
+
+```bash
+# Azure AI Foundry
+FOUNDRY_PROJECT_ENDPOINT=https://your-resource.services.ai.azure.com/api/projects/your-project
+FOUNDRY_API_KEY=your-api-key
+FOUNDRY_MODEL_DEPLOYMENT_NAME=gpt-4o
+
+# Slack
+SLACK_BOT_TOKEN=xoxb-your-bot-token
+SLACK_WORKSPACE=your-workspace-name
+
+# MCP Server (for local development)
+SLACK_MCP_SERVER_URL=http://localhost:13080/mcp
+```
+
+## Required Slack Scopes
+
+Add these scopes in your Slack App configuration:
+
+**Bot Token Scopes:**
+- `chat:write` - Post messages
+- `chat:write.customize` - Customize message appearance
+- `users:read` - View users
+- `channels:read` - View public channels
+- `groups:read` - View private channels
+- `im:read` - View DMs
+- `mpim:read` - View group DMs
+- `channels:history` - Read public channel messages
+- `groups:history` - Read private channel messages  
+- `im:history` - Read DM messages
+- `mpim:history` - Read group DM messages
+
+**After adding scopes, reinstall the app to your workspace!**
+
+## Architecture
+
+```
+┌─────────────────┐
+│  Streamlit UI   │  :8501
+│   (Frontend)    │
+└────────┬────────┘
+         │ Azure SDK
+         ▼
+┌─────────────────┐
+│ Azure AI Foundry│  Model: gpt-4o
+│     Agent       │  Auto-Approval: ON
+└────────┬────────┘
+         │ MCP/HTTP
+         ▼
+┌─────────────────┐
+│ Slack MCP Server│  :13080/mcp
+│   (Container)   │
+└────────┬────────┘
+         │ Slack API
+         ▼
+┌─────────────────┐
+│ Slack Workspace │
+└─────────────────┘
+```
 
 ## Usage
 
-### Run the Script
+### Sample Queries
 
-```bash
-python send_fake_messages.py
+- "What channels are available?"
+- "Show recent messages from #tech"
+- "What did Alice say about errors?"
+- "List all public channels"
+- "Search for messages about deployment"
+
+### Features
+
+- **Tool Discovery** - Automatically finds 7 Slack tools
+- **Message History** - Read channel conversations
+- **Thread Replies** - Access message threads
+- **Channel Management** - List and search channels
+- **File Access** - Download attachments
+- **Reactions** - Add/remove emoji reactions
+
+## Development
+
+### Project Structure
+
+```
+├── app.py                     # Main Streamlit application
+├── docker-compose.yml         # Docker orchestration
+├── docker/
+│   ├── frontend/
+│   │   └── Dockerfile        # Frontend container
+│   └── mcp-server/
+│       └── Dockerfile        # MCP server container
+├── requirements.txt           # Python dependencies
+├── .env.example              # Environment template
+└── send_fake_messages.py     # Test data generator
 ```
 
-The script will:
-1. Test the connection to Slack
-2. Show you the target channel
-3. Ask for confirmation
-4. Send the fake conversation with realistic delays
+### Key Files
 
-### Customize the Conversation
+- **app.py** - Main application with enhanced trace formatting
+- **docker-compose.yml** - Multi-container orchestration
+- **requirements.txt** - All Python dependencies
 
-Edit the `FAKE_CONVERSATIONS` list in `send_fake_messages.py`:
+### Removed Files
 
-```python
-FAKE_CONVERSATIONS = [
-    {
-        "username": "Alice",
-        "icon_emoji": ":woman:",
-        "messages": [
-            "Your custom message here",
-            "Another message from Alice",
-        ]
-    },
-    {
-        "username": "Bob",
-        "icon_emoji": ":man:",
-        "messages": [
-            "Bob's response",
-        ]
-    },
-    # Add more participants...
-]
-```
+Cleaned up from v1.0:
+- Test scripts (test_*.py)
+- Demo files (demo_*.py)
+- Redundant documentation
+- Old Streamlit versions
+- Multiple requirements files
 
-### Available Emoji Icons
+## Trace Formatting
 
-Use any Slack emoji with the format `:emoji_name:`. Common ones:
-- `:woman:`, `:man:`, `:person:`
-- `:technologist:`, `:woman_technologist:`, `:man_technologist:`
-- `:scientist:`, `:teacher:`, `:student:`
-- `:robot_face:`, `:alien:`, `:ghost:`
+The app includes enhanced Azure AI Foundry trace formatting:
 
-### Adjust Message Timing
-
-Change the `delay_range` parameter in the `send_fake_conversation()` call:
-
-```python
-send_fake_conversation(
-    channel=SLACK_CHANNEL,
-    conversations=FAKE_CONVERSATIONS,
-    delay_range=(0.5, 2)  # Faster: 0.5-2 seconds between messages
-)
-```
+- **Conversation IDs** - Organized trace sessions
+- **Metadata** - Timestamped queries for searchability  
+- **Tool Call Tracking** - Visibility into MCP tool execution
+- **Response IDs** - Linkable trace references
+- **Token Usage** - Cost tracking per query
 
 ## Troubleshooting
 
-### "Error: not_in_channel"
-- Make sure you've invited the bot to the channel using `/invite @YourBotName`
+### MCP Server Connection Issues
+```bash
+# Check if MCP server is running
+docker ps | grep slack-mcp-server
 
-### "Error: invalid_auth"
-- Check that your `SLACK_BOT_TOKEN` in `.env` is correct
-- Ensure the token starts with `xoxb-`
+# View MCP server logs
+docker logs slack-mcp-server
+```
 
-### "Error: missing_scope"
-- Go to your app's **OAuth & Permissions** page
-- Add the required scopes: `chat:write` and `chat:write.customize`
-- Reinstall the app to your workspace
+### Missing Scopes
+```bash
+# Test token scopes
+python send_fake_messages.py --test-scopes
+```
 
-### Messages appear as the bot instead of custom usernames
-- Verify you've added the `chat:write.customize` scope
-- Check that `username` and `icon_emoji` are set in your conversation data
+### Azure Authentication
+```bash
+# Login to Azure
+az login
 
-## Security Notes
+# Verify credentials
+az account show
+```
 
-- ⚠️ Never commit your `.env` file or expose your bot token
-- The `.gitignore` file is configured to prevent accidental commits
-- Rotate your bot token if it's ever exposed
-- Only grant the minimum required permissions to your bot
+## Docker Commands
+
+```bash
+# Build and start
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop services
+docker-compose down
+
+# Rebuild after changes
+docker-compose up -d --build
+
+# Clean up everything
+docker-compose down -v
+```
 
 ## License
 
-MIT License - feel free to use and modify as needed.
+MIT
 
 ## Contributing
 
-Feel free to submit issues or pull requests to improve this script!
+Pull requests welcome! Please ensure:
+1. No secrets in commits
+2. Docker builds successfully
+3. Code follows existing style
+4. Tests pass (if applicable)
+
+## Support
+
+- **Issues**: https://github.com/roy2392/slack-messages-fake/issues
+- **Docs**: See `INTEGRATION_SUCCESS.md`
+
+---
+
+Built with Azure AI Foundry + MCP | Containerized with Docker | v1.1.0
