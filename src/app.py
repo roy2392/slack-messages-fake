@@ -7,13 +7,11 @@ This is the main application with improved trace formatting for Azure AI Foundry
 """
 
 import os
-import json
 import streamlit as st
 from dotenv import load_dotenv
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
-from azure.ai.projects.models import PromptAgentDefinition, MCPTool
-from datetime import datetime
+
+from config import AppConfig
+from agent import SlackAgent
 
 # Load environment variables
 load_dotenv()
@@ -31,12 +29,8 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 if "agent" not in st.session_state:
     st.session_state.agent = None
-if "project_client" not in st.session_state:
-    st.session_state.project_client = None
-if "openai_client" not in st.session_state:
-    st.session_state.openai_client = None
-if "conversation_id" not in st.session_state:
-    st.session_state.conversation_id = None
+if "agent_manager" not in st.session_state:
+    st.session_state.agent_manager = None
 
 def initialize_agent():
     """Initialize the Azure AI Foundry agent with Slack MCP tools"""
@@ -45,55 +39,14 @@ def initialize_agent():
 
     with st.spinner("🔌 Connecting to Azure AI Foundry..."):
         try:
-            # Initialize clients
-            project_client = AIProjectClient(
-                endpoint=os.environ["FOUNDRY_PROJECT_ENDPOINT"],
-                credential=DefaultAzureCredential(),
-            )
-            openai_client = project_client.get_openai_client()
-
-            # Create MCP tool with auto-approval
-            slack_mcp_tool = MCPTool(
-                server_label="slack",
-                server_url=os.environ["SLACK_MCP_SERVER_URL"],
-                require_approval="never"  # Auto-approve for seamless execution
-            )
-
-            # Create agent with enhanced instructions for better tracing
-            agent = project_client.agents.create_version(
-                agent_name="SlackAssistant",
-                definition=PromptAgentDefinition(
-                    model=os.environ.get("FOUNDRY_MODEL_DEPLOYMENT_NAME", "gpt-4o"),
-                    instructions="""You are a helpful Slack workspace assistant.
-
-Use the available Slack MCP tools to help users query and interact with their workspace.
-
-When responding:
-1. Be clear and concise
-2. Use markdown formatting for better readability
-3. Cite specific messages or channels when relevant
-4. Provide actionable information
-
-Available actions:
-- List channels
-- Read message history
-- Search for specific messages
-- Get channel information
-- Read thread replies
-""",
-                    tools=[slack_mcp_tool],
-                ),
-                description="Slack workspace AI assistant with MCP integration"
-            )
-
-            # Create a conversation for better trace organization
-            conversation = project_client.agents.create_conversation()
+            # Load configuration and create agent manager
+            config = AppConfig.from_env()
+            agent_manager = SlackAgent(config)
+            agent = agent_manager.initialize()
 
             # Store in session state
-            st.session_state.project_client = project_client
-            st.session_state.openai_client = openai_client
+            st.session_state.agent_manager = agent_manager
             st.session_state.agent = agent
-            st.session_state.conversation_id = conversation.id
 
             return agent
 
@@ -104,21 +57,7 @@ Available actions:
 def send_message(user_input):
     """Send a message to the agent with proper trace formatting"""
     try:
-        # Add metadata for better trace organization
-        response = st.session_state.openai_client.responses.create(
-            input=user_input,
-            extra_body={
-                "agent": {
-                    "name": st.session_state.agent.name,
-                    "type": "agent_reference"
-                },
-                "metadata": {
-                    "session_id": st.session_state.conversation_id,
-                    "timestamp": datetime.utcnow().isoformat(),
-                    "user_query": user_input[:100]  # First 100 chars for trace search
-                }
-            }
-        )
+        response = st.session_state.agent_manager.send_message(user_input)
         return response
 
     except Exception as e:
@@ -195,8 +134,8 @@ with st.sidebar:
 **Model:** {os.environ.get('FOUNDRY_MODEL_DEPLOYMENT_NAME', 'gpt-4o')}
 **Auto-Approval:** ✅ ENABLED
 """)
-        if st.session_state.conversation_id:
-            st.caption(f"Conversation: `{st.session_state.conversation_id[:8]}...`")
+        if st.session_state.agent_manager and st.session_state.agent_manager.conversation_id:
+            st.caption(f"Conversation: `{st.session_state.agent_manager.conversation_id[:8]}...`")
     else:
         st.warning("⚠️ Agent Not Initialized")
 
@@ -245,26 +184,18 @@ with st.sidebar:
 
     with col2:
         if st.button("🔄 Reset", use_container_width=True, help="Reset agent connection"):
-            if st.session_state.agent and st.session_state.project_client:
-                try:
-                    st.session_state.project_client.agents.delete_version(
-                        agent_name=st.session_state.agent.name,
-                        agent_version=st.session_state.agent.version
-                    )
-                except:
-                    pass
+            if st.session_state.agent_manager:
+                st.session_state.agent_manager.cleanup()
             st.session_state.agent = None
-            st.session_state.project_client = None
-            st.session_state.openai_client = None
+            st.session_state.agent_manager = None
             st.session_state.messages = []
-            st.session_state.conversation_id = None
             st.rerun()
 
     st.divider()
 
     # Footer
     st.caption("Built with Azure AI Foundry + MCP")
-    st.caption("v1.0.0")
+    st.caption("v1.1.0")
 
 # Main content
 st.title("💬 Slack AI Assistant")

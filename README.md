@@ -131,32 +131,38 @@ Add these scopes in your Slack App configuration:
 ### Project Structure
 
 ```
-├── app.py                     # Main Streamlit application
-├── docker-compose.yml         # Docker orchestration
+├── src/
+│   ├── __init__.py            # Package initialization
+│   ├── app.py                 # Main Streamlit application
+│   ├── config.py              # Configuration management
+│   └── agent.py               # Azure AI agent wrapper
 ├── docker/
 │   ├── frontend/
-│   │   └── Dockerfile        # Frontend container
+│   │   └── Dockerfile         # Frontend container
 │   └── mcp-server/
-│       └── Dockerfile        # MCP server container
+│       └── Dockerfile         # MCP server container
+├── scripts/
+│   ├── send_fake_messages.py  # Test data generator
+│   └── start_mcp_server.sh    # MCP server launcher
+├── data/
+│   ├── eval_dataset.json      # Evaluation dataset
+│   └── eval_dataset.csv       # Evaluation dataset (CSV)
+├── docs/
+│   └── INTEGRATION_SUCCESS.md # Integration documentation
+├── tests/                     # Test files (empty)
+├── docker-compose.yml         # Docker orchestration
 ├── requirements.txt           # Python dependencies
-├── .env.example              # Environment template
-└── send_fake_messages.py     # Test data generator
+├── .env.example               # Environment template
+└── README.md                  # This file
 ```
 
 ### Key Files
 
-- **app.py** - Main application with enhanced trace formatting
+- **src/app.py** - Main Streamlit application with enhanced trace formatting
+- **src/config.py** - Configuration management using dataclasses
+- **src/agent.py** - SlackAgent class encapsulating Azure AI Foundry logic
 - **docker-compose.yml** - Multi-container orchestration
 - **requirements.txt** - All Python dependencies
-
-### Removed Files
-
-Cleaned up from v1.0:
-- Test scripts (test_*.py)
-- Demo files (demo_*.py)
-- Redundant documentation
-- Old Streamlit versions
-- Multiple requirements files
 
 ## Trace Formatting
 
