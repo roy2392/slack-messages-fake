@@ -38,10 +38,10 @@ open http://localhost:8501
 pip install -r requirements.txt
 
 # 2. Start MCP server
-bash start_mcp_server.sh &
+bash scripts/start_mcp_server.sh &
 
 # 3. Run Streamlit app
-streamlit run app.py
+streamlit run src/app.py
 ```
 
 ## Configuration
